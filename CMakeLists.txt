@@ -26,7 +26,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(Qt5 COMPONENTS Widgets LinguistTools REQUIRED)
 
-#set(TS_FILES qt_conan_de_DE.ts)
+set(TS_FILES qt_conan_de_DE.ts)
 
 if(ANDROID)
   add_library(qt_conan SHARED
@@ -42,10 +42,11 @@ else()
     mainwindow.cpp
     mainwindow.h
     mainwindow.ui
+    conan_python_scripts.qrc
     ${TS_FILES}
   )
 endif()
 
 target_link_libraries(qt_conan PRIVATE Qt5::Widgets)
 
-#qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
+qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
