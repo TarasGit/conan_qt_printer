@@ -14,8 +14,11 @@ MainWindow::MainWindow(QWidget *parent)
             this, &MainWindow::enableDownloadButton);
 
 
-    QMenu *fileMenu = menuBar()->addMenu(tr("&File"));
-    QMenu *EditMenu = menuBar()->addMenu(tr("Edit"));
+    //QMenu *fileMenu = menuBar()->addMenu(tr("&File"));
+    //QMenu *EditMenu = menuBar()->addMenu(tr("Edit"));
+
+    createActions();
+    createMenus();
 }
 
 void MainWindow::enableDownloadButton(){
@@ -71,4 +74,52 @@ void MainWindow::on_button_quit_clicked()
 
     QProgressDialog *progressDialog = new QProgressDialog(this);
     progressDialog->setAttribute(Qt::WA_DeleteOnClose);
+}
+
+void MainWindow::createMenus()
+{
+//! [9] //! [10]
+    fileMenu = menuBar()->addMenu(tr("&File"));
+    fileMenu->addAction(newAct);
+//! [9]
+    fileMenu->addAction(openAct);
+//! [10]
+    fileMenu->addAction(saveAct);
+//! [11]
+    fileMenu->addSeparator();
+}
+
+
+void MainWindow::createActions()
+{
+//! [5]
+    newAct = new QAction(tr("&New"), this);
+    newAct->setShortcuts(QKeySequence::New);
+    newAct->setStatusTip(tr("Create a new file"));
+    connect(newAct, &QAction::triggered, this, &MainWindow::newFile);
+//! [4]
+
+    openAct = new QAction(tr("&Open..."), this);
+    openAct->setShortcuts(QKeySequence::Open);
+    openAct->setStatusTip(tr("Open an existing file"));
+    connect(openAct, &QAction::triggered, this, &MainWindow::open);
+//! [5]
+
+    saveAct = new QAction(tr("&Save"), this);
+    saveAct->setShortcuts(QKeySequence::Save);
+    saveAct->setStatusTip(tr("Save the document to disk"));
+    connect(saveAct, &QAction::triggered, this, &MainWindow::save);
+
+}
+
+void MainWindow::newFile(){
+
+}
+
+void MainWindow::open(){
+
+}
+
+void MainWindow::save(){
+
 }

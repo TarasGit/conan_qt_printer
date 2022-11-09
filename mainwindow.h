@@ -8,6 +8,7 @@
 #include <QDebug>
 #include <unistd.h>
 #include <QProgressDialog>
+#include <QActionGroup>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -26,11 +27,26 @@ private slots:
     void enableDownloadButton();
     void on_button_download_clicked();
     void on_button_quit_clicked();
+    void createMenus();
+    void createActions();
+
+    void newFile();
+    void open();
+    void save();
 
 private:
     Ui::MainWindow *ui;
     QStringListModel *model;
     QListView *view;
     QProcess process;
+
+    QMenu *fileMenu;
+    QMenu *editMenu;
+    QMenu *formatMenu;
+    QMenu *helpMenu;
+    QActionGroup *alignmentGroup;
+    QAction *newAct;
+    QAction *openAct;
+    QAction *saveAct;
 };
 #endif // MAINWINDOW_H
