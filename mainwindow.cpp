@@ -15,6 +15,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 
     QMenu *fileMenu = menuBar()->addMenu(tr("&File"));
+    QMenu *EditMenu = menuBar()->addMenu(tr("Edit"));
 }
 
 void MainWindow::enableDownloadButton(){
